@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Pending - Venture3</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container verification-container">
+        <div class="verification-card">
+            <h1>Email Verification Pending</h1>
+            <div class="verification-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <p>We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.</p>
+            <p class="note">If you don't see the email, please check your spam folder.</p>
+            
+            <div id="resend-container">
+                <p>Didn't receive the email?</p>
+                <button id="resend-btn" class="primary-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Resend Verification Email
+                </button>
+            </div>
+            
+            <div class="verification-actions">
+                <a href="index.html" class="btn-outline">Return to Homepage</a>
+            </div>
+        </div>
+    </div>
+  
+    <footer>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            
+            // Check verification status periodically
+            if (email) {
+                const checkVerification = () => {
+                    fetch(`/api/verification-status?email=${encodeURIComponent(email)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.verified) {
+                                showAlert('Your email has been verified!', 'success');
+                                window.location.href = '/dashboard.html';
+                            }
+                        })
+                        .catch(error => console.error('Error checking verification status:', error));
+                };
+                
+                // Check immediately and then every 10 seconds
+                checkVerification();
+                setInterval(checkVerification, 10000);
+                
+                // Resend verification email
+                document.getElementById('resend-btn').addEventListener('click', async () => {
+                    try {
+                        document.getElementById('resend-btn').innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
+                        document.getElementById('resend-btn').disabled = true;
+                        
+                        const response = await fetch('/api/resend-verification', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email })
+                        });
+                        
+                        const data = await response.json();
+                        showAlert(data.message, 'success');
+                        
+                        document.getElementById('resend-btn').innerHTML = '<i class="fas fa-paper-plane"></i> Resend Verification Email';
+                        document.getElementById('resend-btn').disabled = false;
+                    } catch (error) {
+                        console.error('Error:', error);
+                        showAlert('An error occurred. Please try again.', 'error');
+                        
+                        document.getElementById('resend-btn').innerHTML = '<i class="fas fa-paper-plane"></i> Resend Verification Email';
+                        document.getElementById('resend-btn').disabled = false;
+                    }
+                });
+            }
+            
+            function showAlert(message, type) {
+                // Check if your main.js already has this function
+                if (typeof window.showAlert === 'function') {
+                    window.showAlert(message, type);
+                } else {
+                    alert(message);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

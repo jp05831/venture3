@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - Venture3</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container verification-container">
+        <div class="verification-card">
+            <h1>Email Verification</h1>
+            <div class="verification-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div id="message">Verifying your email...</div>
+            <div class="loading-spinner" id="loading-spinner">
+                <i class="fas fa-circle-notch fa-spin"></i>
+            </div>
+        </div>
+    </div>
+  
+    <footer>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get token from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            
+            if (!token) {
+                document.getElementById('message').textContent = 'Invalid verification link.';
+                document.getElementById('loading-spinner').style.display = 'none';
+                return;
+            }
+            
+            // Call API to verify email
+            fetch(`/api/verify-email?token=${token}`)
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data && data.message) {
+                        document.getElementById('message').textContent = data.message;
+                    }
+                    document.getElementById('loading-spinner').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred during verification. Please try again.';
+                    document.getElementById('loading-spinner').style.display = 'none';
+                });
+        });
+    </script>
+</body>
+</html>

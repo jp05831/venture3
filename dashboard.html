@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Investor Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="glow-effect"></div>
+    
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="list-project-btn"><i class="fas fa-plus"></i> List Your Project</button>
+            <div class="user-profile">
+                <span class="user-name" id="user-name">User</span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Investor Dashboard</h1>
+            <p>Track your Web3 investments</p>
+        </div>
+
+        <section class="portfolio-overview">
+            <h2>Portfolio Overview</h2>
+            <div class="overview-grid" id="portfolio-overview">
+                <div class="overview-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Total Investments</h3>
+                    <div class="value" id="total-investments">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Funds Raised</h3>
+                    <div class="value" id="funds-raised">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Current Value</h3>
+                    <div class="value" id="current-value">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>ROI</h3>
+                    <div class="value" id="roi">0%</div>
+                </div>
+            </div>
+        </section>
+        
+        <div id="dashboard-content">
+            <!-- Dashboard content will be loaded here -->
+            <p>Loading your dashboard...</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is authenticated
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                // Not authenticated, redirect to login
+                alert('Authentication required. Please log in.');
+                window.location.href = '/';
+                return;
+            }
+            
+            // Set username from localStorage
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('user-name').textContent = userName;
+            }
+            
+            // Fetch dashboard data
+            fetchDashboardData();
+            
+            // Handle logout
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userName');
+                window.location.href = '/';
+            });
+        });
+        
+        async function fetchDashboardData() {
+            const token = localStorage.getItem('authToken');
+            const dashboardContent = document.getElementById('dashboard-content');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/dashboard-content', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    // Handle errors (401, 403, etc.)
+                    if (response.status === 401 || response.status === 403) {
+                        alert('Authentication required. Please log in again.');
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('userName');
+                        window.location.href = '/';
+                        return;
+                    }
+                    throw new Error(`Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Update dashboard UI with the data
+                if (data.portfolioValue) {
+                    document.getElementById('total-investments').textContent = `$${data.portfolioValue.toLocaleString()}`;
+                }
+                if (data.fundsRaised) {
+                    document.getElementById('funds-raised').textContent = `$${data.fundsRaised.toLocaleString()}`;
+                }
+                if (data.currentValue) {
+                    document.getElementById('current-value').textContent = `$${data.currentValue.toLocaleString()}`;
+                }
+                if (data.roi) {
+                    document.getElementById('roi').textContent = `${data.roi}%`;
+                }
+                
+                // Display projects if available
+                if (data.projects && data.projects.length > 0) {
+                    let projectsHTML = `
+                        <section class="projects-section">
+                            <h2>Your Projects</h2>
+                            <div class="projects-list">
+                    `;
+                    
+                    data.projects.forEach(project => {
+                        projectsHTML += `
+                            <div class="project-card">
+                                <h3>${project.name}</h3>
+                                <span class="status ${project.status.toLowerCase().replace(' ', '-')}">${project.status}</span>
+                                <button class="view-details-btn" data-id="${project.id}">View Details</button>
+                            </div>
+                        `;
+                    });
+                    
+                    projectsHTML += `
+                            </div>
+                        </section>
+                    `;
+                    
+                    dashboardContent.innerHTML = projectsHTML;
+                    
+                    // Add event listeners to project buttons
+                    document.querySelectorAll('.view-details-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const projectId = this.getAttribute('data-id');
+                            window.location.href = `/projects.html?id=${projectId}`;
+                        });
+                    });
+                } else {
+                    dashboardContent.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-folder-open"></i>
+                            <h3>No projects yet</h3>
+                            <p>You haven't invested in any projects yet. Browse available projects to get started.</p>
+                            <a href="/projects.html" class="btn-primary">Browse Projects</a>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching dashboard data:', error);
+                dashboardContent.innerHTML = `
+                    <div class="error-state">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>Error loading dashboard</h3>
+                        <p>There was a problem loading your dashboard data. Please try again later.</p>
+                        <button onclick="fetchDashboardData()" class="btn-primary">Retry</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Function to show alerts
+        function showAlert(message, type = 'info') {
+            const alertContainer = document.createElement('div');
+            alertContainer.className = `alert alert-${type}`;
+            alertContainer.textContent = message;
+            
+            document.body.appendChild(alertContainer);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                alertContainer.classList.add('fade-out');
+                setTimeout(() => {
+                    document.body.removeChild(alertContainer);
+                }, 500);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

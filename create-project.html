@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | List Your Project</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons" id="auth-buttons">
+            <a href="create-project.html" class="list-project-btn active">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <div class="user-profile">
+                <span class="user-name" id="user-name"></span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Create Project Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>List Your <span>Project</span></h1>
+            <p>Showcase your blockchain startup to our network of investors and talent.</p>
+            
+            <div class="login-options">
+                <form id="create-project-form">
+                    <div class="form-group">
+                        <input type="text" id="project-name" placeholder="Project Name" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="project-description" placeholder="Project Description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="project-technology" placeholder="Technology (e.g., Ethereum, Solidity)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="project-tokenomics" placeholder="Tokenomics (e.g., 100M supply, 40% staking)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="project-team" placeholder="Team (e.g., 5 devs, ex-Consensys)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="project-roadmap" placeholder="Roadmap (e.g., Q2 2025 Mainnet)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="funding-goal" placeholder="Funding Goal (in USD)" required>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-rocket"></i>
+                        Submit Project
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('venture3_user');
+            
+            if (!userData) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            try {
+                const user = JSON.parse(userData);
+                const userNameEl = document.querySelector('#user-name');
+                if (userNameEl) {
+                    userNameEl.textContent = user.name;
+                }
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                localStorage.removeItem('venture3_user');
+                window.location.href = 'index.html';
+            }
+
+            // Handle project creation form submission
+            const projectForm = document.getElementById('create-project-form');
+            if (projectForm) {
+                projectForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const projectData = {
+                        name: document.getElementById('project-name').value,
+                        description: document.getElementById('project-description').value,
+                        technology: document.getElementById('project-technology').value,
+                        tokenomics: document.getElementById('project-tokenomics').value,
+                        team: document.getElementById('project-team').value,
+                        roadmap: document.getElementById('project-roadmap').value,
+                        fundingGoal: document.getElementById('funding-goal').value
+                    };
+
+                    // Simulate project submission
+                    const submitBtn = projectForm.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        console.log('Project submitted:', projectData);
+                        showAlert('Project submitted successfully! It will be reviewed soon.', 'success');
+                        projectForm.reset();
+                        submitBtn.innerHTML = '<i class="fas fa-rocket"></i> Submit Project';
+                        submitBtn.disabled = false;
+                        setTimeout(() => {
+                            window.location.href = 'projects.html';
+                        }, 1500);
+                    }, 1500);
+                });
+            }
+        });
+
+        // Add this function if not already in main.js
+        function showAlert(message, type = 'success', duration = 5000) {
+            let alertEl = document.querySelector('.custom-alert');
+            if (!alertEl) {
+                alertEl = document.createElement('div');
+                alertEl.className = 'custom-alert';
+                document.body.appendChild(alertEl);
+            }
+            alertEl.className = `custom-alert ${type}`;
+            alertEl.textContent = message;
+            alertEl.classList.add('show');
+            setTimeout(() => {
+                alertEl.classList.remove('show');
+            }, duration);
+        }
+    </script>
+</body>
+</html>

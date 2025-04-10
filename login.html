@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Venture33</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Login to Venture33</h1>
+    <div id="verification-success" style="display: none; color: green;">
+      Your email has been successfully verified! Please login to continue.
+    </div>
+    
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    
+    <div>
+      <p>Don't have an account? <a href="investor-signup.html">Sign up</a></p>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user just verified email
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('verified') === 'true') {
+        document.getElementById('verification-success').style.display = 'block';
+      }
+      
+      const loginForm = document.getElementById('login-form');
+      
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            // Store token in localStorage
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('userName', data.name);
+            
+            // Redirect to dashboard
+            window.location.href = '/dashboard.html';
+          } else {
+            // Check if email not verified
+            if (response.status === 403 && !data.verified) {
+              if (confirm(data.message + ' Would you like to resend the verification email?')) {
+                // Redirect to verification pending page
+                window.location.href = '/verification-pending.html?email=' + encodeURIComponent(email);
+              }
+            } else {
+              // Show general error message
+              alert(data.message || 'Login failed');
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred during login. Please try again.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
