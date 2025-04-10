@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Investor Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="glow-effect"></div>
+    
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="list-project-btn"><i class="fas fa-plus"></i> List Your Project</button>
+            <div class="user-profile">
+                <span class="user-name" id="user-name"></span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Investor Dashboard</h1>
+            <p>Track your Web3 investments</p>
+        </div>
+
+        <section class="portfolio-overview">
+            <h2>Portfolio Overview</h2>
+            <div class="overview-grid" id="portfolio-overview">
+                <div class="overview-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>Total Investments</h3>
+                    <div class="value" id="total-investments">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Funds Raised</h3>
+                    <div class="value" id="funds-raised">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Current Value</h3>
+                    <div class="value" id="current-value">$0</div>
+                </div>
+                <div class="overview-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>ROI</h3>
+                    <div class="value" id="roi">0%</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

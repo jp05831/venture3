@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Investor Sign Up</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <a href="index.html" class="connect-btn">
+                <i class="fas fa-user"></i>
+                Sign In
+            </a>
+        </div>
+    </header>
+
+    <!-- Investor Sign Up Section -->
+    <section class="investor-signup">
+        <div class="hero-content">
+            <h1>Join as an <span>Investor</span></h1>
+            <p>Sign up to connect with innovative Web3 projects and grow your investment portfolio.</p>
+            
+            <div class="login-options">
+                <form id="investor-signup-form">
+                    <div class="form-group">
+                        <input type="text" id="investor-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="investor-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="investor-password" placeholder="Create Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="investor-confirm-password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="investor-type" required>
+                            <option value="" disabled selected>Investor Type</option>
+                            <option value="vc">Venture Capital</option>
+                            <option value="angel">Angel Investor</option>
+                            <option value="dao">DAO</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="investor-focus" placeholder="Investment Focus (e.g., DeFi, NFTs)" required>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up as Investor
+                    </button>
+                    <div class="form-footer">
+                        <a href="index.html">Already have an account? Sign in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('investor-signup-form');
+            if (signupForm) {
+                signupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('investor-name').value.trim();
+                    const email = document.getElementById('investor-email').value.trim();
+                    const password = document.getElementById('investor-password').value;
+                    const confirmPassword = document.getElementById('investor-confirm-password').value;
+                    const investorType = document.getElementById('investor-type').value;
+                    const investmentFocus = document.getElementById('investor-focus').value.trim();
+
+                    // Validation
+                    if (!name || !email || !password || !confirmPassword || !investorType || !investmentFocus) {
+                        showAlert('Please fill in all fields', 'error');
+                        return;
+                    }
+                    if (!isValidEmail(email)) {
+                        showAlert('Please enter a valid email address', 'error');
+                        return;
+                    }
+                    if (password.length < 8 || !isStrongPassword(password)) {
+                        showAlert('Password must be 8+ characters with uppercase, lowercase, number, and special character', 'error');
+                        return;
+                    }
+                    if (password !== confirmPassword) {
+                        showAlert('Passwords do not match', 'error');
+                        return;
+                    }
+
+                    // Store user data
+                    const userData = {
+                        name,
+                        email,
+                        investorType,
+                        investmentFocus,
+                        lastLogin: new Date().toISOString(),
+                        isInvestor: true
+                    };
+                    localStorage.setItem('venture3_user', JSON.stringify(userData));
+
+                    showAlert('Sign up successful! Redirecting to profile creation...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'create-profile.html';
+                    }, 1500);
+                });
+            }
+
+            // Import validation functions from main.js
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function isStrongPassword(password) {
+                const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                return strongRegex.test(password);
+            }
+        });
+    </script>
+</body>
+</html>

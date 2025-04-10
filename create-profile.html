@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Create Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons" id="auth-buttons">
+            <a href="create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <div class="user-profile">
+                <span class="user-name" id="user-name"></span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Create Profile Section -->
+    <section class="create-profile">
+        <div class="home-container">
+            <div class="welcome-section">
+                <h1>Create Your <span class="highlight">Profile</span></h1>
+                <p>Showcase your skills, experience, or investment interests to the Web3 community.</p>
+            </div>
+
+            <div class="login-options">
+                <form id="create-profile-form">
+                    <div class="form-group">
+                        <input type="text" id="profile-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="profile-type" required>
+                            <option value="" disabled selected>Select Profile Type</option>
+                            <option value="talent">Talent (Developer, Designer, etc.)</option>
+                            <option value="investor">Investor (VC, Angel, DAO)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="profile-role" placeholder="Role (e.g., Smart Contract Developer, Angel Investor)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="profile-bio" placeholder="Bio (Tell us about yourself)" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="profile-skills" placeholder="Skills/Interests (comma-separated, e.g., Solidity, DeFi, NFTs)" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="profile-availability" required>
+                            <option value="" disabled selected>Availability</option>
+                            <option value="full-time">Full-Time</option>
+                            <option value="part-time">Part-Time</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="not-available">Not Available</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="profile-avatar" placeholder="Avatar URL (optional)">
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Create Profile
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication status
+            const userData = localStorage.getItem('venture3_user');
+            if (!userData) {
+                window.location.href = 'index.html';
+                return;
+            }
+            const user = JSON.parse(userData);
+            document.getElementById('user-name').textContent = user.name;
+
+            // Handle profile creation form submission
+            const createProfileForm = document.getElementById('create-profile-form');
+            if (createProfileForm) {
+                createProfileForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const profileData = {
+                        name: document.getElementById('profile-name').value.trim(),
+                        type: document.getElementById('profile-type').value,
+                        role: document.getElementById('profile-role').value.trim(),
+                        bio: document.getElementById('profile-bio').value.trim(),
+                        skills: document.getElementById('profile-skills').value.split(',').map(skill => skill.trim()),
+                        availability: document.getElementById('profile-availability').value,
+                        avatar: document.getElementById('profile-avatar').value.trim() || 'https://via.placeholder.com/100',
+                        createdAt: new Date().toISOString(),
+                        userEmail: user.email
+                    };
+
+                    // Basic validation
+                    if (!profileData.name || !profileData.type || !profileData.role || !profileData.bio || !profileData.skills.length || !profileData.availability) {
+                        showAlert('Please fill in all required fields', 'error');
+                        return;
+                    }
+
+                    // Store profile data
+                    let profiles = JSON.parse(localStorage.getItem('venture3_profiles') || '[]');
+                    profiles.push(profileData);
+                    localStorage.setItem('venture3_profiles', JSON.stringify(profiles));
+
+                    showAlert('Profile created successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = profileData.type === 'talent' ? 'talent-profiles.html' : 'investors.html';
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
