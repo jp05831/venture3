@@ -99,6 +99,247 @@ function isAuthenticated(req, res, next) {
   }
 }
 
+/**
+ * Creates HTML with consistent header and footer for any page
+ * @param {string} title - Page title
+ * @param {string} content - Main content HTML
+ * @param {Object} options - Additional options
+ * @returns {string} Full HTML with consistent header and footer
+ */
+function renderWithLayout(title, content, options = {}) {
+  // Set default options
+  const opts = {
+    additionalStyles: '',
+    additionalScripts: '',
+    additionalHeadContent: '',
+    ...options
+  };
+
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${title} - Venture3</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        ${opts.additionalHeadContent}
+        <style>
+            ${opts.additionalStyles}
+        </style>
+    </head>
+    <body>
+        <!-- Live Background -->
+        <div class="background" id="background"></div>
+        
+        <!-- Glow Effect -->
+        <div class="glow-effect"></div>
+        
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <i class="fas fa-cubes"></i>
+                Venture<span class="highlight">3</span>
+            </div>
+            <nav>
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+                <ul id="navMenu">
+                    <li><a href="/home.html" id="nav-home">Home</a></li>
+                    <li><a href="/projects.html" id="nav-projects">Projects</a></li>
+                    <li><a href="/investors.html" id="nav-investors">Investors</a></li>
+                    <li><a href="/talent-profiles.html" id="nav-talent">Talent</a></li>
+                    <li><a href="/learn.html" id="nav-learn">Learn</a></li>
+                    <li><a href="/pricing.html" id="nav-pricing">Pricing</a></li>
+                    <li><a href="/dashboard.html" id="nav-dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons" id="authButtons">
+                <a href="/login.html" class="connect-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a href="/signup.html" class="list-project-btn" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+            </div>
+            
+            <!-- User profile will be displayed when logged in (initially hidden) -->
+            <div class="user-profile" id="userProfile" style="display: none;">
+                <span class="user-name" id="userName">User</span>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        ${content}
+      
+        <!-- Footer -->
+        <footer>
+            <div class="copyright">
+                © 2025 Venture3. All rights reserved.
+            </div>
+        </footer>
+      
+        <script>
+        // Function to add animated background particles
+        function createBackgroundEffects() {
+            const background = document.getElementById('background');
+            if (!background) return;
+            
+            // Create particles
+            for (let i = 0; i < 20; i++) {
+                createParticle();
+                if (i % 2 === 0) createHexagon();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(particle);
+            }
+            
+            function createHexagon() {
+                const hexagon = document.createElement('div');
+                hexagon.classList.add('hexagon');
+                hexagon.style.width = Math.random() * 100 + 50 + 'px';
+                hexagon.style.height = hexagon.style.width;
+                hexagon.style.left = Math.random() * 100 + 'vw';
+                hexagon.style.top = Math.random() * 100 + 'vh';
+                hexagon.style.animationDuration = Math.random() * 30 + 20 + 's';
+                hexagon.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(hexagon);
+            }
+        }
+
+        // Function to handle navigation highlighting
+        function setupNavigation() {
+            // Get current page path
+            const currentPath = window.location.pathname;
+            
+            // Highlight current nav item
+            const navLinks = document.querySelectorAll('#navMenu a');
+            navLinks.forEach(link => {
+                // Remove all active classes first
+                link.classList.remove('active');
+                
+                // Check if the link href matches the current path
+                const href = link.getAttribute('href');
+                if (href && currentPath.includes(href)) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Handle specific cases like root path or index
+            if (currentPath === '/' || currentPath.includes('index.html')) {
+                const homeLink = document.getElementById('nav-home');
+                if (homeLink) homeLink.classList.add('active');
+            }
+            
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (navMenu.classList.contains('active') && 
+                        !event.target.closest('#navMenu') && 
+                        !event.target.closest('#menuBtn')) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Function to handle authentication state
+        function handleAuthState() {
+            // Check if user is logged in (via localStorage or cookie)
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const authButtons = document.getElementById('authButtons');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.getElementById('userName');
+            
+            if (isLoggedIn && authButtons && userProfile) {
+                // Show user profile instead of auth buttons
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'flex';
+                
+                // Get user name from localStorage
+                const name = localStorage.getItem('userName');
+                if (name && userName) {
+                    userName.textContent = name;
+                }
+                
+                // Add logout functionality
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', () => {
+                        // Clear user data
+                        localStorage.removeItem('isLoggedIn');
+                        localStorage.removeItem('userName');
+                        localStorage.removeItem('token');
+                        
+                        // Redirect to home page
+                        window.location.href = '/';
+                    });
+                }
+            }
+        }
+
+        // Function to handle header scroll effect
+        function handleHeaderScroll() {
+            const header = document.getElementById('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        }
+
+        // Move glow effect with mouse
+        function handleGlowEffect() {
+            const glowEffect = document.querySelector('.glow-effect');
+            if (glowEffect) {
+                document.addEventListener('mousemove', (e) => {
+                    glowEffect.style.left = e.clientX + 'px';
+                    glowEffect.style.top = e.clientY + 'px';
+                });
+            }
+        }
+
+        // Initialize all common functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            createBackgroundEffects();
+            setupNavigation();
+            handleAuthState();
+            handleHeaderScroll();
+            handleGlowEffect();
+        });
+        </script>
+        
+        ${opts.additionalScripts}
+    </body>
+    </html>
+  `;
+}
+
 // Add user with auto-verification (for testing)
 app.get('/api/add-test-user', (req, res) => {
   const testUser = {
@@ -172,7 +413,7 @@ app.post('/api/signup', async (req, res) => {
       html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="color: #6c3ce9;">Welcome to Venture3!</h1>
+            <h1 style="color: #ff0080;">Welcome to Venture3!</h1>
           </div>
           
           <div style="background: #f9f9f9; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
@@ -181,11 +422,11 @@ app.post('/api/signup', async (req, res) => {
             <p>Please click the button below to verify your email address:</p>
             
             <div style="text-align: center; margin: 30px 0;">
-              <a href="${verificationUrl}" style="background-color: #6c3ce9; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Verify Email Address</a>
+              <a href="${verificationUrl}" style="background-color: #ff0080; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Verify Email Address</a>
             </div>
             
             <p>If the button above doesn't work, you can also copy and paste the following link into your browser:</p>
-            <p style="word-break: break-all; color: #6c3ce9;"><a href="${verificationUrl}">${verificationUrl}</a></p>
+            <p style="word-break: break-all; color: #ff0080;"><a href="${verificationUrl}">${verificationUrl}</a></p>
             
             <p>This link will expire in 24 hours.</p>
           </div>
@@ -215,7 +456,7 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// Verification route - direct HTML response
+// Verification route - with consistent header
 app.get('/verify-email', (req, res) => {
   const { token } = req.query;
   
@@ -228,79 +469,50 @@ app.get('/verify-email', (req, res) => {
     
     if (userIndex === -1) {
       console.log('User not found for verification');
-      return res.send(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Verification Failed</title>
-            <style>
-              body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-              .error { color: red; }
-              .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; 
-                     background-color: #6c3ce9; color: white; text-decoration: none; 
-                     border-radius: 5px; }
-            </style>
-          </head>
-          <body>
-            <h1 class="error">Verification Failed</h1>
+      
+      // Error page for user not found with consistent header
+      const errorContent = `
+        <div class="verification-container">
+          <div class="verification-card">
+            <div class="verification-icon error">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <h1>Verification Failed</h1>
             <p>User not found or verification link is invalid.</p>
-            <a href="/" class="btn">Return to Login</a>
-          </body>
-        </html>
-      `);
-    }
-    
-    // Update user verification status
-    users[userIndex].verified = true;
-    
-    // Save the updated user status
-    saveUsers();
-    
-    console.log('User verified successfully:', users[userIndex].email);
-    
-    // Return success page
-    res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Email Verified</title>
-          <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-            .success { color: green; }
-            .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; 
-                   background-color: #6c3ce9; color: white; text-decoration: none; 
-                   border-radius: 5px; }
-          </style>
-        </head>
-        <body>
-          <h1 class="success">Email Verified Successfully!</h1>
-          <p>Your email has been verified. You can now log in to your account.</p>
-          <a href="/" class="btn">Login Now</a>
-        </body>
-      </html>
-    `);
-  } catch (error) {
-    console.error('Error verifying email:', error);
-    res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Verification Failed</title>
-          <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-            .error { color: red; }
-            .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; 
-                   background-color: #6c3ce9; color: white; text-decoration: none; 
-                   border-radius: 5px; }
-          </style>
-        </head>
-        <body>
-          <h1 class="error">Verification Failed</h1>
-          <p>The verification link is invalid or has expired.</p>
-          <a href="/" class="btn">Return to Login</a>
-        </body>
-      </html>
-    `);
+            <div class="verification-actions">
+              <a href="/" class="btn-outline">Return to Homepage</a>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      return res.send(renderWithLayout('Verification Failed', errorContent, {
+        additionalStyles: `
+          .verification-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: calc(var(--header-height) + 2 * var(--space-sm) + 3rem);
+            min-height: calc(100vh - 150px);
+            display: flex;
+            align-items: center;
+          justify-content: center;
+          gap: var(--space-xs);
+          transition: var(--transition);
+          text-decoration: none;
+        }
+        
+        .btn-outline:hover {
+          background: rgba(255, 0, 153, 0.1);
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-pink);
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `
+    }));
   }
 });
 
@@ -372,7 +584,7 @@ app.post('/api/resend-verification', async (req, res) => {
       html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <h1 style="color: #6c3ce9;">Welcome to Venture3!</h1>
+            <h1 style="color: #ff0080;">Welcome to Venture3!</h1>
           </div>
           
           <div style="background: #f9f9f9; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
@@ -381,11 +593,11 @@ app.post('/api/resend-verification', async (req, res) => {
             <p>Please click the button below to verify your email address:</p>
             
             <div style="text-align: center; margin: 30px 0;">
-              <a href="${verificationUrl}" style="background-color: #6c3ce9; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Verify Email Address</a>
+              <a href="${verificationUrl}" style="background-color: #ff0080; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Verify Email Address</a>
             </div>
             
             <p>If the button above doesn't work, you can also copy and paste the following link into your browser:</p>
-            <p style="word-break: break-all; color: #6c3ce9;"><a href="${verificationUrl}">${verificationUrl}</a></p>
+            <p style="word-break: break-all; color: #ff0080;"><a href="${verificationUrl}">${verificationUrl}</a></p>
             
             <p>This link will expire in 24 hours.</p>
           </div>
@@ -516,17 +728,98 @@ app.get('/api/projects/:id', (req, res) => {
   res.json(projectData);
 });
 
-// Root route handler
+// Root route handler - render with consistent header
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  // Instead of just sending the file, we'll render it with our layout
+  // Check if index.html exists and read it
+  const indexPath = path.join(__dirname, 'index.html');
+  
+  if (fs.existsSync(indexPath)) {
+    try {
+      // Read the file
+      const content = fs.readFileSync(indexPath, 'utf8');
+      
+      // Extract the main content from between body tags
+      const bodyMatch = content.match(/<body>([\s\S]*)<\/body>/i);
+      
+      if (bodyMatch && bodyMatch[1]) {
+        // Extract content, removing header and footer if they exist
+        let mainContent = bodyMatch[1];
+        
+        // Remove header and footer if they exist
+        mainContent = mainContent.replace(/<header[\s\S]*?<\/header>/gi, '');
+        mainContent = mainContent.replace(/<footer[\s\S]*?<\/footer>/gi, '');
+        
+        // Send with our consistent layout
+        res.send(renderWithLayout('Home', mainContent));
+      } else {
+        // If can't extract body content, just send the file
+        res.sendFile(indexPath);
+      }
+    } catch (error) {
+      console.error('Error reading index.html:', error);
+      res.sendFile(indexPath);
+    }
+  } else {
+    // If index.html doesn't exist, render a default home page
+    const homeContent = `
+      <div class="home-container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Welcome to <span>Venture3</span></h1>
+            <p>The premier platform connecting innovative blockchain projects with crypto investors.</p>
+            <div class="hero-buttons">
+              <a href="/projects.html" class="primary-btn">Explore Projects</a>
+              <a href="/learn.html" class="btn-outline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    res.send(renderWithLayout('Home', homeContent));
+  }
 });
 
-// Serve HTML files automatically
+// Serve HTML files with consistent header
 app.get('/:page', (req, res, next) => {
   const page = req.params.page;
+  
   // If it ends with .html or has no extension, try to serve the HTML file
   if (page.endsWith('.html') || !page.includes('.')) {
     const filePath = path.join(__dirname, page.endsWith('.html') ? page : `${page}.html`);
+    
+    // Check if file exists
+    if (fs.existsSync(filePath)) {
+      try {
+        // Read the file
+        const content = fs.readFileSync(filePath, 'utf8');
+        
+        // Extract the main content from between body tags
+        const bodyMatch = content.match(/<body>([\s\S]*)<\/body>/i);
+        
+        if (bodyMatch && bodyMatch[1]) {
+          // Extract content, removing header and footer if they exist
+          let mainContent = bodyMatch[1];
+          
+          // Remove header and footer if they exist
+          mainContent = mainContent.replace(/<header[\s\S]*?<\/header>/gi, '');
+          mainContent = mainContent.replace(/<footer[\s\S]*?<\/footer>/gi, '');
+          
+          // Extract title from the original HTML
+          const titleMatch = content.match(/<title>(.*?)<\/title>/i);
+          const title = titleMatch && titleMatch[1] ? titleMatch[1].replace(' - Venture3', '') : page;
+          
+          // Send with our consistent layout
+          return res.send(renderWithLayout(title, mainContent));
+        }
+      } catch (error) {
+        console.error(`Error processing ${page}:`, error);
+      }
+    }
+    
+    // If we get here, either the file doesn't exist or we couldn't process it
+    // Fall back to normal file sending
     res.sendFile(filePath, (err) => {
       if (err) {
         // If file not found, continue to next middleware
@@ -559,29 +852,101 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working!' });
 });
 
-// Catch-all route for 404 errors
+// Catch-all route for 404 errors with consistent header
 app.use((req, res) => {
   console.log('404 for:', req.originalUrl);
-  res.status(404).send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Page Not Found</title>
-        <style>
-          body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-          .error { color: red; }
-          .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; 
-                 background-color: #6c3ce9; color: white; text-decoration: none; 
-                 border-radius: 5px; }
-        </style>
-      </head>
-      <body>
-        <h1 class="error">404 - Page Not Found</h1>
+  
+  const notFoundContent = `
+    <div class="error-container">
+      <div class="error-card">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h1>404 - Page Not Found</h1>
         <p>The page you are looking for does not exist.</p>
-        <a href="/" class="btn">Go to Homepage</a>
-      </body>
-    </html>
-  `);
+        <a href="/" class="primary-btn">Go to Homepage</a>
+      </div>
+    </div>
+  `;
+  
+  res.status(404).send(renderWithLayout('Page Not Found', notFoundContent, {
+    additionalStyles: `
+      .error-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-top: calc(var(--header-height) + 2 * var(--space-sm) + 3rem);
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .error-card {
+        background: var(--transparent-gray);
+        backdrop-filter: blur(10px);
+        border-radius: var(--radius-lg);
+        padding: var(--space-xl);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(255, 0, 153, 0.2);
+        text-align: center;
+        animation: fadeIn 0.5s ease-out;
+        width: 100%;
+      }
+      
+      .error-icon {
+        width: 80px;
+        height: 80px;
+        margin: var(--space-md) auto;
+        border-radius: 50%;
+        background: rgba(255, 0, 153, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ef4444;
+        font-size: 2.5rem;
+      }
+      
+      h1 {
+        color: #ef4444;
+        font-size: 2rem;
+        margin-bottom: var(--space-md);
+      }
+      
+      p {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-lg);
+        line-height: 1.6;
+      }
+      
+      .primary-btn {
+        background: linear-gradient(90deg, var(--pink), var(--light-pink));
+        color: var(--text-white);
+        padding: var(--space-sm) var(--space-lg);
+        border-radius: var(--radius-full);
+        font-weight: 600;
+        font-size: 1rem;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        box-shadow: var(--shadow-pink);
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+      
+      .primary-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 0, 153, 0.4);
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `
+  }));
 });
 
 // Start server

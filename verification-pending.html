@@ -7,6 +7,153 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional verification page styles */
+        .verification-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: calc(var(--header-height) + 2 * var(--space-sm) + 3rem);
+        }
+        
+        .verification-card {
+            background: var(--transparent-gray);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 0, 153, 0.2);
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .verification-card h1 {
+            color: var(--light-pink);
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        
+        .verification-card h1::after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            width: 60px;
+            background: var(--pink);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .verification-icon {
+            width: 80px;
+            height: 80px;
+            margin: var(--space-md) auto;
+            border-radius: 50%;
+            background: rgba(255, 0, 153, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink);
+            font-size: 2.5rem;
+        }
+        
+        .verification-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.6;
+        }
+        
+        .note {
+            font-style: italic;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            padding: var(--space-sm);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-xs);
+        }
+        
+        .note i {
+            color: var(--pink);
+        }
+        
+        #resend-container {
+            margin: var(--space-lg) 0;
+            padding: var(--space-md);
+            border-top: 1px solid rgba(255, 0, 153, 0.2);
+            border-bottom: 1px solid rgba(255, 0, 153, 0.2);
+        }
+        
+        #resend-container p {
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+            color: var(--text-white);
+        }
+        
+        .verification-actions {
+            margin-top: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--pink);
+            border: 1px solid var(--pink);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 0, 153, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-pink);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
+        }
+        
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 0, 153, 0.3);
+        }
+        
+        .indicator-line {
+            width: 40px;
+            height: 2px;
+            background: rgba(255, 0, 153, 0.2);
+        }
+        
+        .email-sent {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
     <!-- Live Background -->
@@ -33,14 +180,31 @@
         </nav>
     </header>
 
-    <div class="container verification-container">
+    <div class="verification-container">
         <div class="verification-card">
             <h1>Email Verification Pending</h1>
+            
+            <div class="status-indicator">
+                <div class="indicator-dot" style="background: var(--pink);"></div>
+                <div class="indicator-line"></div>
+                <div class="indicator-dot email-sent" style="background: var(--pink);"></div>
+                <div class="indicator-line"></div>
+                <div class="indicator-dot"></div>
+            </div>
+            
             <div class="verification-icon">
                 <i class="fas fa-envelope"></i>
             </div>
+            
             <p>We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.</p>
-            <p class="note">If you don't see the email, please check your spam folder.</p>
+            
+            <div class="note">
+                <i class="fas fa-info-circle"></i> If you don't see the email, please check your spam or junk folder.
+            </div>
+            
+            <div id="verification-status">
+                <p id="status-message">Waiting for you to verify your email...</p>
+            </div>
             
             <div id="resend-container">
                 <p>Didn't receive the email?</p>
@@ -51,7 +215,9 @@
             </div>
             
             <div class="verification-actions">
-                <a href="index.html" class="btn-outline">Return to Homepage</a>
+                <a href="index.html" class="btn-outline">
+                    <i class="fas fa-home"></i> Return to Homepage
+                </a>
             </div>
         </div>
     </div>
@@ -64,8 +230,77 @@
   
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Add animate particles to background
+            const background = document.getElementById('background');
+            
+            // Create particles
+            for (let i = 0; i < 20; i++) {
+                createParticle();
+                if (i % 2 === 0) createHexagon();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(particle);
+            }
+            
+            function createHexagon() {
+                const hexagon = document.createElement('div');
+                hexagon.classList.add('hexagon');
+                hexagon.style.width = Math.random() * 100 + 50 + 'px';
+                hexagon.style.height = hexagon.style.width;
+                hexagon.style.left = Math.random() * 100 + 'vw';
+                hexagon.style.top = Math.random() * 100 + 'vh';
+                hexagon.style.animationDuration = Math.random() * 30 + 20 + 's';
+                hexagon.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(hexagon);
+            }
+            
+            // Move glow effect with mouse
+            const glowEffect = document.querySelector('.glow-effect');
+            document.addEventListener('mousemove', (e) => {
+                glowEffect.style.left = e.clientX + 'px';
+                glowEffect.style.top = e.clientY + 'px';
+            });
+            
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
             const urlParams = new URLSearchParams(window.location.search);
             const email = urlParams.get('email');
+            
+            // Function to show custom alert
+            function showAlert(message, type) {
+                const alertElement = document.createElement('div');
+                alertElement.classList.add('custom-alert', type);
+                alertElement.innerHTML = message;
+                document.body.appendChild(alertElement);
+                
+                setTimeout(() => {
+                    alertElement.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    alertElement.classList.remove('show');
+                    setTimeout(() => {
+                        alertElement.remove();
+                    }, 300);
+                }, 5000);
+            }
             
             // Check verification status periodically
             if (email) {
@@ -74,8 +309,17 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.verified) {
-                                showAlert('Your email has been verified!', 'success');
-                                window.location.href = '/dashboard.html';
+                                showAlert('<i class="fas fa-check-circle"></i> Your email has been verified!', 'success');
+                                
+                                // Update UI to show success
+                                document.querySelectorAll('.indicator-dot')[2].style.background = 'var(--pink)';
+                                document.querySelectorAll('.indicator-line')[1].style.background = 'var(--pink)';
+                                document.getElementById('status-message').innerHTML = '<span style="color: #10b981;"><i class="fas fa-check-circle"></i> Email verified successfully!</span>';
+                                
+                                // Redirect after a short delay
+                                setTimeout(() => {
+                                    window.location.href = '/dashboard.html';
+                                }, 2000);
                             }
                         })
                         .catch(error => console.error('Error checking verification status:', error));
@@ -100,27 +344,23 @@
                         });
                         
                         const data = await response.json();
-                        showAlert(data.message, 'success');
+                        showAlert(`<i class="fas fa-paper-plane"></i> ${data.message}`, 'success');
                         
                         document.getElementById('resend-btn').innerHTML = '<i class="fas fa-paper-plane"></i> Resend Verification Email';
                         document.getElementById('resend-btn').disabled = false;
                     } catch (error) {
                         console.error('Error:', error);
-                        showAlert('An error occurred. Please try again.', 'error');
+                        showAlert('<i class="fas fa-exclamation-circle"></i> An error occurred. Please try again.', 'error');
                         
                         document.getElementById('resend-btn').innerHTML = '<i class="fas fa-paper-plane"></i> Resend Verification Email';
                         document.getElementById('resend-btn').disabled = false;
                     }
                 });
-            }
-            
-            function showAlert(message, type) {
-                // Check if your main.js already has this function
-                if (typeof window.showAlert === 'function') {
-                    window.showAlert(message, type);
-                } else {
-                    alert(message);
-                }
+            } else {
+                // No email in URL parameters
+                document.getElementById('verification-status').innerHTML = 
+                    '<p style="color: #ef4444;"><i class="fas fa-exclamation-circle"></i> No email address provided. Please try signing up again.</p>';
+                document.getElementById('resend-container').style.display = 'none';
             }
         });
     </script>
