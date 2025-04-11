@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Secure Checkout</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons" id="auth-buttons">
+            <a href="create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <div class="user-profile">
+                <span class="user-name" id="user-name-header"></span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout">
+        <div class="checkout-container">
+            <h1 class="section-title">Secure Checkout</h1>
+            <p class="section-subtitle">Complete your Venture3 subscription with your preferred payment method</p>
+
+            <div class="checkout-content">
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span>Plan:</span>
+                            <strong id="plan-name"></strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Price:</span>
+                            <strong id="plan-price"></strong>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Due Today:</span>
+                            <strong id="plan-total"></strong>
+                        </div>
+                    </div>
+                    <div class="security-note">
+                        <i class="fas fa-lock"></i>
+                        <p>Secure transaction powered by industry-leading encryption</p>
+                    </div>
+                </div>
+
+                <!-- Payment Options -->
+                <div class="payment-options">
+                    <h2>Payment Method</h2>
+                    <div class="payment-tabs">
+                        <button class="tab-btn active" data-tab="card">Credit/Debit Card</button>
+                        <button class="tab-btn" data-tab="paypal">PayPal</button>
+                        <button class="tab-btn" data-tab="crypto">Cryptocurrency</button>
+                    </div>
+
+                    <!-- Card Payment Form -->
+                    <div class="payment-form active" id="card-payment">
+                        <form id="card-form">
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group half">
+                                    <label for="card-expiry">Expiration</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group half">
+                                    <label for="card-cvc">CVC</label>
+                                    <input type="text" id="card-cvc" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="billing-name">Cardholder Name</label>
+                                <input type="text" id="billing-name" placeholder="John Doe" required>
+                            </div>
+                            <button type="submit" class="primary-btn">Pay Now</button>
+                        </form>
+                    </div>
+
+                    <!-- PayPal Payment Form -->
+                    <div class="payment-form" id="paypal-payment">
+                        <p>Click below to pay with PayPal</p>
+                        <button class="primary-btn paypal-btn" id="paypal-btn">
+                            <i class="fab fa-paypal"></i> Pay with PayPal
+                        </button>
+                    </div>
+
+                    <!-- Crypto Payment Form -->
+                    <div class="payment-form" id="crypto-payment">
+                        <div class="form-group">
+                            <label for="crypto-type">Select Cryptocurrency</label>
+                            <select id="crypto-type">
+                                <option value="eth">Ethereum (ETH)</option>
+                                <option value="btc">Bitcoin (BTC)</option>
+                                <option value="usdt">Tether (USDT)</option>
+                            </select>
+                        </div>
+                        <p>You will be provided a wallet address after clicking "Pay with Crypto"</p>
+                        <button class="primary-btn crypto-btn" id="crypto-btn">
+                            <i class="fas fa-coins"></i> Pay with Crypto
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-footer">
+                <p><i class="fas fa-shield-alt"></i> 30-day money-back guarantee</p>
+                <p>Need help? <a href="#">Contact support</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('venture3_user');
+            const selectedPlan = localStorage.getItem('selected_plan');
+            
+            if (!userData || !selectedPlan) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const user = JSON.parse(userData);
+            document.getElementById('user-name-header').textContent = user.name;
+
+            const planDetails = {
+                'early-investors': { name: 'Early Investors', price: 'Free (Beta)', amount: 0 },
+                'projects-founders': { name: 'Projects/Founders', price: '$49/month', amount: 49 },
+                'founding-member': { name: 'Founding Member', price: '$199/month', amount: 199 }
+            };
+
+            if (planDetails[selectedPlan]) {
+                document.getElementById('plan-name').textContent = planDetails[selectedPlan].name;
+                document.getElementById('plan-price').textContent = planDetails[selectedPlan].price;
+                document.getElementById('plan-total').textContent = planDetails[selectedPlan].amount === 0 ? 'Free' : `$${planDetails[selectedPlan].amount}`;
+            }
+
+            // Tab Switching
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const paymentForms = document.querySelectorAll('.payment-form');
+            
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    paymentForms.forEach(f => f.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(`${this.dataset.tab}-payment`).classList.add('active');
+                });
+            });
+
+            // Card Payment
+            const cardForm = document.getElementById('card-form');
+            cardForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                processPayment('Card');
+            });
+
+            // PayPal Payment
+            document.getElementById('paypal-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                processPayment('PayPal');
+            });
+
+            // Crypto Payment
+            document.getElementById('crypto-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const cryptoType = document.getElementById('crypto-type').value;
+                processPayment(`Crypto (${cryptoType.toUpperCase()})`);
+            });
+
+            function processPayment(method) {
+                const submitBtn = document.querySelector('.payment-form.active .primary-btn');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    submitBtn.disabled = true;
+                }
+
+                setTimeout(() => {
+                    localStorage.setItem('user_plan', selectedPlan);
+                    localStorage.removeItem('selected_plan');
+                    showAlert(`Payment successful via ${method}! Redirecting to dashboard...`, 'success');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

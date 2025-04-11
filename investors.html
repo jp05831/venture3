@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Investors</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="glow-effect"></div>
+    
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html" class="active">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <div class="user-profile">
+                <span class="user-name" id="user-name"></span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="investors-page">
+        <div class="home-container">
+            <div class="welcome-section">
+                <h1>Investor <span class="highlight">Network</span></h1>
+                <p>Discover and connect with leading crypto investors, including VCs, angels, and DAOs.</p>
+                <a href="investor-signup.html" class="primary-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Become an Investor
+                </a>
+            </div>
+            
+            <div class="investor-filters">
+                <div class="filter-group">
+                    <label for="investment-focus">Focus</label>
+                    <select id="investment-focus">
+                        <option value="">All Sectors</option>
+                        <option value="defi">DeFi</option>
+                        <option value="nft">NFTs</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="gaming">Gaming</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="investor-type">Type</label>
+                    <select id="investor-type">
+                        <option value="">All Types</option>
+                        <option value="vc">Venture Capital</option>
+                        <option value="angel">Angel Investor</option>
+                        <option value="dao">DAO</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="min-ticket">Min Investment</label>
+                    <input type="number" id="min-ticket" placeholder="$50,000">
+                </div>
+            </div>
+
+            <div class="investors-grid" id="investors-grid">
+                <!-- Example Investor Card (for visualization, populate dynamically) -->
+                <div class="investor-card">
+                    <div class="investor-logo"></div>
+                    <h3>Sample VC</h3>
+                    <span class="investor-type">Venture Capital</span>
+                    <div class="investor-details">
+                        <p><strong>Focus:</strong> DeFi, Infrastructure</p>
+                        <p><strong>Ticket Size:</strong> $100K - $5M</p>
+                    </div>
+                    <div class="investor-actions">
+                        <a href="#" class="contact-btn">Contact</a>
+                        <a href="#" class="view-profile-btn">View Profile</a>
+                    </div>
+                </div>
+                <!-- More cards would be added dynamically -->
+            </div>
+
+            <div class="see-more">
+                <button class="btn-outline" id="load-more-investors">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 innovation with capital and connections.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Learn</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Docs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+        <//head>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

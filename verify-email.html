@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - Venture3</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional verification page styles */
+        .verification-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: calc(var(--header-height) + 2 * var(--space-sm) + 3rem);
+        }
+        
+        .verification-card {
+            background: var(--transparent-gray);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 0, 153, 0.2);
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .verification-card h1 {
+            color: var(--light-pink);
+            font-size: 2rem;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        
+        .verification-card h1::after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            width: 60px;
+            background: var(--pink);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .verification-icon {
+            width: 80px;
+            height: 80px;
+            margin: var(--space-md) auto;
+            border-radius: 50%;
+            background: rgba(255, 0, 153, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pink);
+            font-size: 2.5rem;
+        }
+        
+        #message {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            margin: var(--space-md) 0;
+        }
+        
+        .loading-spinner {
+            color: var(--pink);
+            font-size: 2rem;
+            margin: var(--space-md) 0;
+        }
+        
+        .success-message {
+            display: none;
+            color: #10b981;
+            margin-top: var(--space-md);
+        }
+        
+        .error-message {
+            display: none;
+            color: #ef4444;
+            margin-top: var(--space-md);
+        }
+        
+        .verification-actions {
+            margin-top: var(--space-lg);
+        }
+        
+        .go-to-dashboard {
+            display: none;
+            margin: var(--space-md) auto 0;
+            max-width: 300px;
+        }
+        
+        /* Animation for loading and status transitions */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="verification-container">
+        <div class="verification-card">
+            <h1>Email Verification</h1>
+            <div class="verification-icon pulse" id="verification-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <div id="message">Verifying your email...</div>
+            <div class="loading-spinner" id="loading-spinner">
+                <i class="fas fa-circle-notch fa-spin"></i>
+            </div>
+            <div class="success-message" id="success-message">
+                <i class="fas fa-check-circle"></i> Your email has been verified successfully!
+            </div>
+            <div class="error-message" id="error-message">
+                <i class="fas fa-exclamation-circle"></i> <span id="error-text"></span>
+            </div>
+            <div class="verification-actions">
+                <a href="home.html" class="btn-outline" id="home-btn">
+                    <i class="fas fa-home"></i> Return to Homepage
+                </a>
+                <a href="dashboard.html" class="primary-btn go-to-dashboard" id="dashboard-btn">
+                    <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+  
+    <footer>
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animate particles to background
+            const background = document.getElementById('background');
+            
+            // Create particles
+            for (let i = 0; i < 20; i++) {
+                createParticle();
+                if (i % 2 === 0) createHexagon();
+            }
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(particle);
+            }
+            
+            function createHexagon() {
+                const hexagon = document.createElement('div');
+                hexagon.classList.add('hexagon');
+                hexagon.style.width = Math.random() * 100 + 50 + 'px';
+                hexagon.style.height = hexagon.style.width;
+                hexagon.style.left = Math.random() * 100 + 'vw';
+                hexagon.style.top = Math.random() * 100 + 'vh';
+                hexagon.style.animationDuration = Math.random() * 30 + 20 + 's';
+                hexagon.style.animationDelay = Math.random() * 5 + 's';
+                background.appendChild(hexagon);
+            }
+            
+            // Move glow effect with mouse
+            const glowEffect = document.querySelector('.glow-effect');
+            document.addEventListener('mousemove', (e) => {
+                glowEffect.style.left = e.clientX + 'px';
+                glowEffect.style.top = e.clientY + 'px';
+            });
+            
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Get token from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            
+            if (!token) {
+                document.getElementById('message').textContent = 'Invalid verification link.';
+                document.getElementById('loading-spinner').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('error-text').textContent = 'Missing verification token.';
+                document.getElementById('verification-icon').classList.remove('pulse');
+                document.getElementById('verification-icon').innerHTML = '<i class="fas fa-times-circle"></i>';
+                return;
+            }
+            
+            // Call API to verify email
+            fetch(`/api/verify-email?token=${token}`)
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                        return;
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data) {
+                        document.getElementById('loading-spinner').style.display = 'none';
+                        
+                        if (data.success) {
+                            // Success state
+                            document.getElementById('message').textContent = 'Email Verified Successfully!';
+                            document.getElementById('success-message').style.display = 'block';
+                            document.getElementById('verification-icon').classList.remove('pulse');
+                            document.getElementById('verification-icon').innerHTML = '<i class="fas fa-check-circle"></i>';
+                            document.getElementById('dashboard-btn').style.display = 'block';
+                            
+                            // Confetti effect for success (optional visual enhancement)
+                            createConfetti();
+                        } else {
+                            // Error state
+                            document.getElementById('message').textContent = data.message || 'Verification failed.';
+                            document.getElementById('error-message').style.display = 'block';
+                            document.getElementById('error-text').textContent = data.message || 'Verification failed.';
+                            document.getElementById('verification-icon').classList.remove('pulse');
+                            document.getElementById('verification-icon').innerHTML = '<i class="fas fa-times-circle"></i>';
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'An error occurred during verification.';
+                    document.getElementById('loading-spinner').style.display = 'none';
+                    document.getElementById('error-message').style.display = 'block';
+                    document.getElementById('error-text').textContent = 'Please try again later.';
+                    document.getElementById('verification-icon').classList.remove('pulse');
+                    document.getElementById('verification-icon').innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+                });
+                
+            // Simple confetti effect function (purely visual enhancement)
+            function createConfetti() {
+                const confettiContainer = document.createElement('div');
+                confettiContainer.style.position = 'fixed';
+                confettiContainer.style.width = '100%';
+                confettiContainer.style.height = '100%';
+                confettiContainer.style.top = '0';
+                confettiContainer.style.left = '0';
+                confettiContainer.style.pointerEvents = 'none';
+                confettiContainer.style.zIndex = '999';
+                document.body.appendChild(confettiContainer);
+                
+                const colors = ['#ff0080', '#ff66b2', '#f8f8f8'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    const size = Math.random() * 10 + 5;
+                    
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.top = '-20px';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.opacity = Math.random() * 0.7 + 0.3;
+                    confetti.style.pointerEvents = 'none';
+                    
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    confettiContainer.appendChild(confetti);
+                    
+                    // Add keyframes for confetti animation
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        @keyframes fall {
+                            to {
+                                transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confettiContainer.remove();
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

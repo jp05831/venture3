@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Venture3</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Learn Page Specific Styles */
+        .learn-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .learn-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 0, 153, 0.1);
+        }
+
+        .learn-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--pink), var(--light-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .learn-hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .learn-categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 0, 153, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--pink);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 0, 153, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.8rem;
+            color: var(--pink);
+        }
+
+        .category-card h3 {
+            color: var(--light-pink);
+            margin-bottom: 0.8rem;
+        }
+
+        .category-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            background: rgba(255, 0, 153, 0.1);
+            color: var(--pink);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--pink);
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background: rgba(255, 0, 153, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 153, 0.2);
+        }
+
+        .featured-articles {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--light-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 0, 153, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--pink);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-image {
+            height: 180px;
+            background-color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 0, 153, 0.3), transparent);
+            z-index: 1;
+        }
+
+        .article-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 0, 153, 0.8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--light-pink);
+            font-size: 1.3rem;
+        }
+
+        .article-content p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .view-all {
+            text-align: center;
+        }
+
+        .view-all-btn {
+            background: linear-gradient(90deg, var(--pink), var(--light-pink));
+            color: white;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 0, 153, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 0, 153, 0.4);
+        }
+
+        .faq-section {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 0, 153, 0.1);
+        }
+
+        .faq-list {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 0, 153, 0.1);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light-pink);
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-question i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--pink);
+            margin-left: 0.5rem;
+        }
+
+        .newsletter-cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 0, 153, 0.1), rgba(30, 30, 30, 0.5));
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(255, 0, 153, 0.2);
+        }
+
+        .newsletter-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light-pink);
+        }
+
+        .newsletter-cta p {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 0, 153, 0.3);
+            background: rgba(18, 18, 18, 0.6);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 10px rgba(255, 0, 153, 0.3);
+        }
+
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            padding: 0 1.5rem;
+            background: linear-gradient(90deg, var(--pink), var(--light-pink));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .newsletter-form button:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .learn-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .learn-hero {
+                padding: 2rem 1rem;
+            }
+            
+            .learn-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .learn-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="learn-container">
+        <div class="learn-hero">
+            <h1>Learn About Blockchain & Investing</h1>
+            <p>Expand your knowledge about blockchain technology, crypto investments, and decentralized finance. Whether you're a beginner or an experienced investor, our educational resources will help you make informed decisions.</p>
+        </div>
+        
+        <div class="learn-categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3>Blockchain Basics</h3>
+                <p>Learn the fundamental concepts of blockchain technology, how it works, and why it's revolutionary.</p>
+                <a href="#blockchain-basics" class="explore-btn">Explore</a>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Investment Strategies</h3>
+                <p>Discover proven strategies for investing in crypto projects and maximizing your returns.</p>
+                <a href="#investment-strategies" class="explore-btn">Explore</a>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3>Project Analysis</h3>
+                <p>Learn how to evaluate blockchain projects, assess their potential, and identify red flags.</p>
+                <a href="#project-analysis" class="explore-btn">Explore</a>
+            </div>
+        </div>
+        
+        <div class="featured-articles">
+            <div class="section-header">
+                <h2>Featured Articles</h2>
+                <p>Our latest insights and educational content to help you navigate the blockchain ecosystem</p>
+            </div>
+            
+            <div class="article-grid">
+                <div class="article-card">
+                    <div class="article-image" style="background-image: url('/images/blockchain-basics.jpg');">
+                        <span class="article-tag">Beginner</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>Understanding Blockchain Technology: A Beginner's Guide</h3>
+                        <p>Learn the core concepts of blockchain technology and how it's changing the digital landscape.</p>
+                        <div class="article-meta">
+                            <span>5 min read</span>
+                            <span>April 8, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image" style="background-image: url('/images/defi-explained.jpg');">
+                        <span class="article-tag">DeFi</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>DeFi Explained: The Future of Financial Systems</h3>
+                        <p>Discover how decentralized finance is revolutionizing traditional banking and financial services.</p>
+                        <div class="article-meta">
+                            <span>8 min read</span>
+                            <span>April 6, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image" style="background-image: url('/images/nft-market.jpg');">
+                        <span class="article-tag">NFTs</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>NFT Market Insights: Beyond Digital Art</h3>
+                        <p>Explore the expanding world of NFTs and their applications beyond digital collectibles.</p>
+                        <div class="article-meta">
+                            <span>6 min read</span>
+                            <span>April 3, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-all">
+                <a href="#articles" class="view-all-btn">View All Articles</a>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to the most common questions about blockchain investing</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is blockchain technology?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Blockchain is a distributed, decentralized, public ledger technology that records transactions across many computers so that any involved record cannot be altered retroactively, without the alteration of all subsequent blocks. This allows the participants to verify and audit transactions independently and relatively inexpensively.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I evaluate a blockchain project before investing?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        When evaluating a blockchain project, consider factors such as: the team's experience and track record, the problem the project aims to solve, the technology and innovation behind it, tokenomics and distribution model, market potential, roadmap and milestones, community engagement, and competition in the space. It's also important to review their whitepaper, audit reports, and connect with team members if possible.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What are the risks associated with blockchain investments?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Blockchain investments carry several risks including: market volatility, regulatory uncertainty, technology risks, security vulnerabilities, project failure, liquidity issues, and potential scams or fraudulent projects. It's important to conduct thorough research, diversify your investments, and only invest what you can afford to lose.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I get started with blockchain investing?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        To get started with blockchain investing: 1) Educate yourself about blockchain technology and different investment options, 2) Set up secure accounts on reputable exchanges or platforms, 3) Start with a small amount and consider established projects first, 4) Gradually diversify your portfolio as you gain experience, 5) Keep up with industry news and trends, and 6) Consider different investment strategies such as dollar-cost averaging.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is the difference between tokens and coins?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Coins (like Bitcoin or Ethereum) have their own blockchain and primarily function as currency or a store of value. Tokens are built on existing blockchains (like many ERC-20 tokens on Ethereum) and can represent various assets or utilities within a specific project's ecosystem. While coins primarily serve as money, tokens can represent assets, access rights, ownership, or specific functionalities within a network.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="newsletter-cta">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest insights, trends, and educational content in the blockchain space</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleFaq(element) {
+            // Toggle active class
+            element.classList.toggle('active');
+            
+            // Toggle visibility of answer
+            const answer = element.nextElementSibling;
+            if (element.classList.contains('active')) {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+        
+        // Initialize FAQ items (hide answers initially)
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqAnswers = document.querySelectorAll('.faq-answer');
+            faqAnswers.forEach(answer => {
+                answer.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

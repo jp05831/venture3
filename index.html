@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venture3 | Web3 Investment Platform</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Live Background -->
+    <div class="background" id="background"></div>
+    
+    <!-- Glow Effect -->
+    <div class="glow-effect"></div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <i class="fas fa-cubes"></i>
+            Venture<span class="highlight">3</span>
+        </div>
+        <nav>
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu">
+                <li><a href="/home.html">Home</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="/investors.html">Investors</a></li>
+                <li><a href="/talent-profiles.html">Talent</a></li>
+                <li><a href="/learn.html">Learn</a></li>
+                <li><a href="/pricing.html">Pricing</a></li>
+                <li data-auth-required style="display: none;"><a href="/dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <a href="#signup" class="connect-btn" data-auth-public>
+                <i class="fas fa-user"></i>
+                Sign In
+            </a>
+            <div class="user-profile" data-auth-required style="display: none;">
+                <span class="user-name" id="user-name"></span>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Accelerate the Future of <span>Web3 Ventures</span></h1>
+            <p>The premier platform connecting innovative blockchain projects with crypto investors, talent, and resources. Building the decentralized economy together.</p>
+            
+            <div class="login-options">
+                <div class="login-tabs">
+                    <button class="login-tab active" data-target="email-login">Sign In</button>
+                </div>
+                
+                <div class="login-content">
+                    <div class="login-form active" id="email-login">
+                        <form id="email-login-form">
+                            <div class="form-group">
+                                <input type="email" id="email-input" placeholder="Your email address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="password-input" placeholder="Your password" required>
+                            </div>
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Sign In
+                            </button>
+                            <div class="form-footer">
+                                <a href="#" id="forgot-password">Forgot password?</a>
+                                <span>|</span>
+                                <a href="#" id="create-account">Create an account</a>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Registration Form -->
+                    <div class="login-form" id="register-form">
+                        <form id="email-register-form">
+                            <div class="form-group">
+                                <input type="text" id="name-input" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="register-email-input" placeholder="Your email address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="register-password-input" placeholder="Create password" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="confirm-password-input" placeholder="Confirm password" required>
+                            </div>
+                            <button type="submit" class="primary-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </button>
+                            <div class="form-footer">
+                                <a href="#" id="back-to-login">Already have an account? Sign in</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="247">$0M+</div>
+                    <div class="stat-label">Capital Raised</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="523">0</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1400">0+</div>
+                    <div class="stat-label">Verified Investors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="3800">0+</div>
+                    <div class="stat-label">Talent Pool</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Core Elements</h2>
+        <p class="section-subtitle">Venture3 provides all the tools and connections needed to raise capital, build teams, and grow successful Web3 projects in the decentralized economy.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Project Profiles</h3>
+                <p>Create detailed profiles highlighting your technology, tokenomics, team credentials, and roadmap. Stand out with verified achievements and technical documentation.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Investor Network</h3>
+                <p>A curated community of crypto VCs, angel investors, and DAOs looking for promising Web3 projects. Filter by investment focus, funding stage, and token preferences.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users-cog"></i></div>
+                <h3>Talent Marketplace</h3>
+                <p>Connect with blockchain developers, smart contract auditors, tokenomics experts, and other crypto-native talent. Find the right skills to take your project to the next level.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                <h3>Funding Mechanisms</h3>
+                <p>Support for both traditional equity investment and token-based fundraising models. Integrated escrow systems and milestone-based release of funds for investor confidence.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Verification System</h3>
+                <p>Blockchain-based verification of team credentials, code audits, and development milestones. Build trust through transparency and proven expertise.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+                <h3>DeFi Integration</h3>
+                <p>Seamlessly connect with major DeFi protocols for project token launches, liquidity pools, and decentralized exchange listings. Maximize your token utility from day one.</p>
+                <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Preview Section -->
+    <section class="projects-preview">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Discover innovative blockchain projects currently raising capital through the Venture3 platform.</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-logo"></div>
+                <h3>DeFi Protocol</h3>
+                <p>Decentralized lending and borrowing platform with innovative yield strategies</p>
+                <div class="project-tags">
+                    <span>DeFi</span>
+                    <span>Lending</span>
+                    <span>Yield</span>
+                </div>
+                <div class="project-funding">
+                    <div class="funding-progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="funding-info">
+                        <span>$0 / $5M</span>
+                        <span>0% Funded</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-logo"></div>
+                <h3>NFT Marketplace</h3>
+                <p>Cross-chain NFT marketplace with focus on gaming assets and metaverse integration</p>
+                <div class="project-tags">
+                    <span>NFT</span>
+                    <span>Gaming</span>
+                    <span>Metaverse</span>
+                </div>
+                <div class="project-funding">
+                    <div class="funding-progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="funding-info">
+                        <span>$0 / $5M</span>
+                        <span>0% Funded</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-logo"></div>
+                <h3>DAO Framework</h3>
+                <p>Tools for creating and managing decentralized autonomous organizations</p>
+                <div class="project-tags">
+                    <span>DAO</span>
+                    <span>Governance</span>
+                    <span>Tooling</span>
+                </div>
+                <div class="project-funding">
+                    <div class="funding-progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="funding-info">
+                        <span>$0 / $3M</span>
+                        <span>0% Funded</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="see-more">
+            <a href="#" class="btn-outline">View All Projects</a>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Join the Next Generation of Web3 Innovation</h2>
+            <p>Whether you're building the future or investing in it, Venture3 provides the connections, tools and resources you need to succeed in the decentralized economy.</p>
+            
+            <div class="newsletter">
+                <input type="email" placeholder="Enter your email address">
+                <button>Get Early Access</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Partners Section -->
+    <section class="partners">
+        <h2>Trusted By Leading Projects & Investors</h2>
+        <div class="partners-grid">
+            <div class="partner-item"><i class="fab fa-ethereum"></i></div>
+            <div class="partner-item"><i class="fab fa-bitcoin"></i></div>
+            <div class="partner-item"><i class="fas fa-coins"></i></div>
+            <div class="partner-item"><i class="fas fa-cube"></i></div>
+            <div class="partner-item"><i class="fas fa-server"></i></div>
+            <div class="partner-item"><i class="fas fa-code-branch"></i></div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fas fa-cubes"></i>
+                    Venture<span class="highlight">3</span>
+                </div>
+                <p>Empowering Web3 projects with the connections, capital, and resources needed to build the decentralized future.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="/projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="/dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="/talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="/learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Venture3. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Add notification container -->
+    <div class="notification-container"></div>
+    
+    <script src="/js/auth.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
