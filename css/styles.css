@@ -273,6 +273,7 @@ nav a.active {
     font-size: 0.85rem; /* Smaller font size */
 }
 
+<<<<<<< HEAD
 /* Add these styles at the end of your styles.css file */
 
 /* Modern styling for logout button */
@@ -356,6 +357,26 @@ nav a.active {
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
+=======
+.logout-btn {
+    background: rgba(255, 0, 153, 0.1);
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    width: 28px; /* Further reduced from 32px to 28px */
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 0, 153, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-pink);
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
 }
 
 .menu-btn {
@@ -1992,6 +2013,7 @@ header.scrolled ~ .projects-preview {
 header {
     height: var(--header-height);
     box-sizing: content-box; /* Ensures padding doesn't affect the height */
+<<<<<<< HEAD
 }
 
 /* ========== Fixes for login.html and Verification Page ========== */
@@ -2105,4 +2127,6 @@ header {
     .verification-card {
         padding: var(--space-md);
     }
+=======
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
 }

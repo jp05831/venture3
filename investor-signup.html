@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venture3 | Investor Sign Up</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/styles.css">
+=======
+    <link rel="stylesheet" href="css/styles.css">
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -24,6 +28,7 @@
         <nav>
             <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
             <ul id="navMenu">
+<<<<<<< HEAD
                 <li><a href="/home.html">Home</a></li>
                 <li><a href="/projects.html">Projects</a></li>
                 <li><a href="/investors.html">Investors</a></li>
@@ -48,6 +53,24 @@
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </div>
+=======
+                <li><a href="home.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="investors.html">Investors</a></li>
+                <li><a href="talent-profiles.html">Talent</a></li>
+                <li><a href="learn.html">Learn</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="create-project.html" class="list-project-btn">
+                <i class="fas fa-plus-circle"></i>
+                List Your Project
+            </a>
+            <a href="index.html" class="connect-btn">
+                <i class="fas fa-user"></i>
+                Sign In
+            </a>
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
         </div>
     </header>
 
@@ -87,7 +110,11 @@
                         Sign Up as Investor
                     </button>
                     <div class="form-footer">
+<<<<<<< HEAD
                         <a href="/index.html">Already have an account? Sign in</a>
+=======
+                        <a href="index.html">Already have an account? Sign in</a>
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
                     </div>
                 </form>
             </div>
@@ -114,9 +141,15 @@
             <div class="footer-col">
                 <h3>Platform</h3>
                 <ul class="footer-links">
+<<<<<<< HEAD
                     <li><a href="/projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
                     <li><a href="/dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
                     <li><a href="/talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+=======
+                    <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Browse Projects</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Investor Dashboard</a></li>
+                    <li><a href="talent-profiles.html"><i class="fas fa-chevron-right"></i> Talent Marketplace</a></li>
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Token Launchpad</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Contract Audits</a></li>
                 </ul>
@@ -125,7 +158,11 @@
                 <h3>Resources</h3>
                 <ul class="footer-links">
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+<<<<<<< HEAD
                     <li><a href="/learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+=======
+                    <li><a href="learn.html"><i class="fas fa-chevron-right"></i> Web3 Learning Hub</a></li>
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Tokenomics Guide</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Security Standards</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Founder Resources</a></li>
@@ -147,15 +184,24 @@
         </div>
     </footer>
 
+<<<<<<< HEAD
     <script src="/js/main.js"></script>
     <script src="/js/auth.js"></script>
+=======
+    <script src="js/main.js"></script>
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const signupForm = document.getElementById('investor-signup-form');
             if (signupForm) {
+<<<<<<< HEAD
                 signupForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     console.log('Signup form submitted');
+=======
+                signupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
 
                     const name = document.getElementById('investor-name').value.trim();
                     const email = document.getElementById('investor-email').value.trim();
@@ -164,6 +210,7 @@
                     const investorType = document.getElementById('investor-type').value;
                     const investmentFocus = document.getElementById('investor-focus').value.trim();
 
+<<<<<<< HEAD
                     // Client-side validation
                     if (!name || !email || !password || !confirmPassword || !investorType || !investmentFocus) {
                         alert('Please fill in all fields');
@@ -201,6 +248,41 @@
                         console.error('Signup error:', error);
                         alert('An error occurred during signup. Please try again.');
                     }
+=======
+                    // Validation
+                    if (!name || !email || !password || !confirmPassword || !investorType || !investmentFocus) {
+                        showAlert('Please fill in all fields', 'error');
+                        return;
+                    }
+                    if (!isValidEmail(email)) {
+                        showAlert('Please enter a valid email address', 'error');
+                        return;
+                    }
+                    if (password.length < 8 || !isStrongPassword(password)) {
+                        showAlert('Password must be 8+ characters with uppercase, lowercase, number, and special character', 'error');
+                        return;
+                    }
+                    if (password !== confirmPassword) {
+                        showAlert('Passwords do not match', 'error');
+                        return;
+                    }
+
+                    // Store user data
+                    const userData = {
+                        name,
+                        email,
+                        investorType,
+                        investmentFocus,
+                        lastLogin: new Date().toISOString(),
+                        isInvestor: true
+                    };
+                    localStorage.setItem('venture3_user', JSON.stringify(userData));
+
+                    showAlert('Sign up successful! Redirecting to profile creation...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'create-profile.html';
+                    }, 1500);
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
                 });
             }
 
@@ -214,6 +296,7 @@
                 const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
                 return strongRegex.test(password);
             }
+<<<<<<< HEAD
             
             function showAlert(message, type) {
                 if (typeof window.showAlert === 'function') {
@@ -222,6 +305,8 @@
                     alert(message);
                 }
             }
+=======
+>>>>>>> f0ac7b2c8cd69a1371f9e798772691bd7d6f5463
         });
     </script>
 </body>
